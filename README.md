@@ -1,70 +1,71 @@
-# Getting Started with Create React App
+# 🧠 AI-Powered Smart Notes & Document Analyzer
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+An intelligent, full-stack note-taking and document analysis application built with Spring Boot and React. This system leverages the Google Gemini AI API to automatically generate comprehensive summaries and smart titles from both plain text and uploaded PDF documents.
 
-## Available Scripts
+## ✨ Key Features
 
-In the project directory, you can run:
+* **🤖 AI Integration:** Automatically extracts core concepts from long texts and generates smart titles using Google Gemini API.
+* **📄 PDF Document Processing:** Utilizes Apache PDFBox to extract and sanitize raw text from binary PDF uploads (BLOB) for AI analysis.
+* **🌗 Modern UI/UX:** Features a dynamic Dark/Light mode toggle, custom toast notifications, and a highly responsive design.
+* **🖱️ Drag & Drop Functionality:** Seamless file uploading experience with HTML5 Drag and Drop API integration.
+* **⚡ Optimized Rendering:** Displays notes in reverse chronological order with dynamic content truncation ("Show More/Less") for maximum readability.
+* **🔍 Live Search:** Real-time filtering through note titles and contents.
 
-### `npm start`
+## 🛠️ Technology Stack
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+**Backend (RESTful API):**
+* Java 17
+* Spring Boot 3.x
+* Spring Data JPA
+* H2 Database (In-Memory)
+* Apache PDFBox (Document Processing)
+* Maven
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+**Frontend (Client):**
+* React.js
+* Axios (Asynchronous HTTP requests)
+* CSS-in-JS (Custom animations and dynamic styling)
 
-### `npm test`
+## 🚀 Getting Started
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Prerequisites
+* JDK 17 or higher
+* Node.js and npm
+* A valid Google Gemini API Key
 
-### `npm run build`
+### Backend Setup
+1. Clone the repository.
+2. Navigate to the Spring Boot project root directory.
+3. Open `src/main/resources/application.properties` and add your Gemini API key:
+   ```properties
+   gemini.api.key=YOUR_API_KEY_HERE
+   gemini.api.url=[https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=](https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=)
+   spring.servlet.multipart.max-file-size=50MB
+   spring.servlet.multipart.max-request-size=50MB
+Run the application using your IDE (IntelliJ IDEA) or via Maven:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Bash
+mvn spring-boot:run
+The API will be available at http://localhost:8080
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Frontend Setup
+Navigate to the React project directory.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Install the dependencies:
 
-### `npm run eject`
+Bash
+npm install
+Start the development server:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Bash
+npm start
+The client will be available at http://localhost:3000
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+🏗️ Architecture & Design Decisions
+Multipart/Form-Data: Used for handling binary PDF uploads alongside text data to prevent memory overhead associated with Base64 encoding.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Data Sanitization: Implemented a custom sanitization algorithm before passing extracted PDF text to the LLM to prevent JSON formatting corruption.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Bottom-Up MVC: Designed with strict adherence to Single Responsibility principles across Controller, Service, and Repository layers.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Developed as part of a comprehensive Software Engineering internship project.
